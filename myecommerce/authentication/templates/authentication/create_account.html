@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  {% load static %}
+</head>
+<header>
+
+    <img src="{% static 'images/cloudbazar.png' %}" width = "500" height="100">
+  </header>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/authentication/create_account.css' %}">
+<body>
+  <div class="container">
+    <h2>Create Account</h2>
+    <form action="{% url 'create-account' %}" method="POST" style="text-align: center;">
+      {% csrf_token %}
+      
+      <label for="first_name">First Name:</label>
+      <input type="text" id="first_name" name="{{ form.first_name.html_name }}" required>
+      
+      <label for="last_name">Last Name:</label>
+      <input type="text" id="last_name" name="{{ form.last_name.html_name }}" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="{{ form.email.html_name }}" required>
+      
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="{{ form.username.html_name }}" required>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="{{ form.password.html_name }}" required>
+      
+      <div class="submit-container">
+        <button type="submit" class="button-12" role="button">Create Account</button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

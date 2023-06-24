@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Verification</title>
+    {% load static %}
+  
+</head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/authentication/email_verification.css' %}">
+<header>
+
+    <img src="{% static 'images/cloudbazar.png' %}" width = "500" height="100">
+  </header>
+<body>
+
+
+  <div class="container">
+    <h2>Email Verification</h2>
+    <form action="{% url 'email-verification' %}" method = "POST">
+      {% csrf_token %}
+      
+      <label for="verification-code">Enter the verification code:</label>
+      <input type="text" id="verification-code" name="confirmation_number" >
+      <div class="btn-container">
+        <button type="submit">Confirm</button>
+      </form>
+      
+
+
+        <form action="{% url 'email-verification' %}" method = "GET">
+          <button type="submit" name = "resend-code" id="resend-code" >Resend Code</button>
+        </form>
+        
+      </div>
+  </div>
+</body>
+{% if resend_code == True %}
+<form action="{% url 'email-verification' %}" method = "GET">
+<p>a new code has been successfully sent</p>
+<button name = "delete-resend-msg" id="remove-message">Remove</button>
+</form>
+{% else %}
+<h1></h1>
+{% endif %}
+</html>
+
+{% if form.confirmation_number.errors %}
+  {% for error in form.confirmation_number.errors%}
+    {% if error == "Please provide a valid confirmation number" %}
+    <p>{{error}}</p>
+    
+    {% endif %}
+{% endfor %}
+{% endif %}

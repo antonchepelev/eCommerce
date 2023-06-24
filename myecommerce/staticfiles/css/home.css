@@ -1,0 +1,87 @@
+/* CSS styles for the e-commerce site */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  main {
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 0 20px;
+  }
+
+  h2 {
+    color: #333;
+  }
+
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* CSS */
+  .dropdown {
+    position: relative;
+    
+    bottom: 40px;
+    left: 700px;
+    
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 8px 0;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  .sign-in {
+position: relative;
+bottom: 40px;
+left: 700px;
+color: #fff;
+  }

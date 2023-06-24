@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-commerce Site</title>
+  <script src="https://kit.fontawesome.com/37a1c72a36.js" crossorigin="anonymous"></script>
+</head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/home/home.css' %}">
+<body>
+  <!-- Header section -->
+  <header>
+    <h1><img src="{% static 'images/cloudbazar.png' %}" width = "500" height="100"></h1>
+    
+    
+        <div class="banner-container">
+          <div class="banner">10% OFF SITEWIDE USE CODE "CLOUDLAUNCH" AT CHECKOUT</div>
+        </div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Cart</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    
+    {% if request.user.is_authenticated %}
+    <div class="dropdown">
+ 
+    
+      <span>My Account <i class="fa-solid fa-angle-down"></i></span>
+      <div class="dropdown-content">
+        <a href="#">Profile</a>
+        <a href="#">Orders</a>
+        <a href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+    
+    {% else %}
+    
+    <a href="{% url 'sign-in' %}" class ="sign-in">Sign In</a>
+  
+    {% endif %}
+    
+  </header>
+
+  <!-- Main content section -->
+  <main>
+    <section id="featured-products">
+      <h2>Featured Products</h2>
+      <!-- Add your featured product listings here -->
+      <a href="https://youtube.com"><img src="{% static 'images/ps5_picture.jpg' %}"width="300" height="200" ></a>
+    </section>
+
+    <section id="latest-products">
+      <h2>Latest Products</h2>
+      <!-- Add your latest product listings here -->
+    </section>
+  </main>
+
+  <!-- Footer section -->
+  <footer>
+    <p>&copy; 2023 Cloud Bazar. All rights reserved.</p>
+  </footer>
+</body>
+</html>

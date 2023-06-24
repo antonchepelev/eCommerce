@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "home.apps.HomeConfig",
+    "authentication.apps.AuthenticationConfig"
 ]
 
 MIDDLEWARE = [
@@ -121,3 +123,33 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# The URL prefix for static files
+STATIC_URL = '/static/'
+
+import os
+# The absolute path to the directory where collectstatic will collect static files for deployment
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Additional directories where static files are located
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+
+import dotenv
+
+
+dotenv.load_dotenv()
+#Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.smtp2go.com'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+
+
+# Optional: Default email address for sending emails
+DEFAULT_FROM_EMAIL = 'currency.data.py@gmail.com'

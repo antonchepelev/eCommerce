@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  {% load static %}
+  <header>
+
+    <img src="{% static 'images/cloudbazar.png' %}" width = "500" height="100">
+  </header>
+
+</head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/authentication/sign_in.css' %}">
+<body>
+  <div class="container">
+    <h2>Sign In</h2>
+    <form action="{% url 'sign-in' %}" method="POST" style="text-align: center;">
+        
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="{{ form.username.html_name }}" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="{{ form.password.html_name }}" required>
+      <button type="submit" class="button-12" role="button">Sign In</button>
+      {% csrf_token %}
+    </form>
+	
+    <div class="links-container">
+      <a href="{% url 'create-account' %}">Don't have an account?</a>
+      <a href="forgot_password.html">Forgot your password?</a>
+    </div>
+  </div>
+</body>
+</html>
+
