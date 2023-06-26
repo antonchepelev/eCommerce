@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from authentication.forms import CreateAccountForm, LoginForm, EmailVerificationForm
+from authentication.forms import CreateAccountForm, LoginForm, EmailVerificationForm, EmailEntryForm
 from django.contrib.auth import authenticate, login, logout
 from .models import UserManager, UserEmailConfirmationNumber
 from django.core.mail import send_mail
@@ -145,7 +145,25 @@ class email_verification(View):
         return render(request,"authentication/email_verification.html",{"form":form})
             
 
+class reset_provide_email(View):
+    def get(self,request):
+        form = EmailEntryForm(request.GET)
+        return render(request,"authentication/reset_provide_email.html",{"form":form})
+    def post(self,request):
+        form = EmailEntryForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+            html_reset_link = render_to_string("authentication/email_reset_text.html")
+            send_mail( 
+                    "Reset Password",
+                    "",
+                    "cloudbazaronline@gmail.com",
+                    [email],
+                    html_message= html_reset_link,
+                    fail_silently=False,
 
+            )
+            return render(request,"authentication/reset_provide_email_message.html")
 
     
 

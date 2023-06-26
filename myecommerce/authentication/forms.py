@@ -14,3 +14,9 @@ class LoginForm(forms.Form):
 
 class EmailVerificationForm(forms.Form):
     confirmation_number = forms.CharField(max_length=10)
+
+
+class EmailEntryForm(forms.ModelForm):
+    class Meta:
+        model = Accounts
+        fields = ["email"]

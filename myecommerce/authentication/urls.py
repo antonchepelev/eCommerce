@@ -7,4 +7,6 @@ urlpatterns = [
     path("logout/",views.logout_user,name= "logout"),
     path("create-account/",views.create_account.as_view(),name= "create-account"),
     path("email-verifictaion/",views.email_verification.as_view(),name= "email-verification"),
+    path("reset-provide-email/",views.reset_provide_email.as_view(),name = "reset-provide-email"),
+    #path("reset-password/<uidb64>/<token>/")
 ]

@@ -1,0 +1,69 @@
+<html>
+<head>
+  <title>Email Entry Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #6E6D70;
+    }
+
+    .container {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h3 {
+      text-align: center;
+      color: #6E6D70;
+    }
+
+    label,
+    input {
+      display: block;
+      margin-bottom: 10px;
+      color: #6E6D70;
+    }
+
+    input[type="email"] {
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px;
+      border: none;
+    }
+
+    input[type="submit"] {
+      background-color: #6E6D70;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-top: 10px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+{% load static %}
+<header>
+
+    <img src="{% static 'images/cloudbazar.png' %}" width = "500" height="100">
+  </header>
+<body>
+  <div class="container">
+    <h3>Please provide us your email so we can email you your password reset link</h3>
+
+    <form action="{% url 'reset-provide-email' %}" method="post">
+      {% csrf_token %}
+      <input type="email" id="email" name="email" placeholder = "Email" required>
+
+      <input type="submit" value="Send Reset Link">
+    </form>
+  </div>
+</body>
+</html>
+
