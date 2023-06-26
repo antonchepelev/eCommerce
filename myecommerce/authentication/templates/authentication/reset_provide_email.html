@@ -1,54 +1,10 @@
 <html>
 <head>
   <title>Email Entry Form</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #6E6D70;
-    }
 
-    .container {
-      width: 300px;
-      margin: 0 auto;
-      padding: 20px;
-      border: 1px solid #ccc;
-      background-color: #f4f4f4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    h3 {
-      text-align: center;
-      color: #6E6D70;
-    }
-
-    label,
-    input {
-      display: block;
-      margin-bottom: 10px;
-      color: #6E6D70;
-    }
-
-    input[type="email"] {
-      padding: 10px;
-      width: 100%;
-      border-radius: 6px;
-      border: none;
-    }
-
-    input[type="submit"] {
-      background-color: #6E6D70;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      margin-top: 10px;
-      border-radius: 6px;
-    }
-  </style>
 </head>
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/authentication/reset_provide_email.css' %}">
 <header>
 
     <img src="{% static 'images/cloudbazar.png' %}" width = "500" height="100">
