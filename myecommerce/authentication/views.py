@@ -1,11 +1,11 @@
 
 from django.shortcuts import render
-import secrets
+
 from django.shortcuts import render, redirect
 from django.views import View
 from authentication.forms import CreateAccountForm, LoginForm, EmailVerificationForm
 from django.contrib.auth import authenticate, login, logout
-from .models import UserManager, UserEmailConfirmationNumber
+from .models import UserManager
 from django.core.mail import send_mail
 import random
 from django.template.loader import render_to_string
@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 
-class sign_in(View):
+class Login(View):
     def get(self, request):
         if request.method == 'GET':
             form = LoginForm(request.GET)
@@ -47,12 +47,12 @@ class sign_in(View):
         return render(request, 'authentication/sign_in.html', {'form': form})
 
 
-def logout_user(request):
+def Logout(request):
     logout(request)
     return redirect("home")
 
 
-class create_account(View):
+class CreateAccount(View):
     def get(self, request):
         if request.method == "GET":
             form = CreateAccountForm(request.GET)
@@ -84,7 +84,7 @@ class create_account(View):
                 return render(request, "authentication/create_account.html", {'form': form})
 
 
-class email_verification(View):
+class EmailVerification(View):
     def get(self, request):
 
         form = EmailVerificationForm(request.GET)

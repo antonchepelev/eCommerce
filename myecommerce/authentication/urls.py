@@ -12,12 +12,11 @@ PasswordResetCompleteView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path("sign-in/",views.sign_in.as_view(),name= "sign-in"),
-    path("logout/",views.logout_user,name= "logout"),
-    path("create-account/",views.create_account.as_view(),name= "create-account"),
-    path("email-verifictaion/",views.email_verification.as_view(),name= "email-verification"),
-    # path("reset-provide-email/",views.reset_provide_email.as_view(),name = "reset-provide-email"),
-    # path("reset-password/<str:uid>/<str:token>/",views.reset_password.as_view(),name ="reset-password"),
+    path("sign-in/",views.Login.as_view(),name= "sign-in"),
+    path("logout/",views.Logout,name= "logout"),
+    path("create-account/",views.CreateAccount.as_view(),name= "create-account"),
+    path("email-verifictaion/",views.EmailVerification.as_view(),name= "email-verification"),
+
 
 
  
