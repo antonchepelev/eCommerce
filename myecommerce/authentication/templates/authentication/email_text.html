@@ -4,21 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verify Your Email Address</title>
-  {% load static %}
 </head>
-<link rel="stylesheet" type="text/css" href="{% static 'css/authentication/email_text.css' %}">
-<body>
-  <div class="container">
-    <h2>Verify Your Email Address</h2>
-    <p>Dear {{first_name}},</p>
-    <p>Thank you for creating an account with Cloud Bazar. To complete your registration and ensure the security of your account, we kindly ask you to verify your email address.</p>
-    <p>Follow the instructions below to verify your email:</p>
-    <p>Enter the verification code provided: <strong>{{email_confirmation_number}}</strong></p>
-    <p>If you have any trouble verifying your email or if you did not create an account, please contact our support team at <a href="mailto:cloudbazarsupport@gmail.com">cloudbazarsupport@gmail.com</a>.</p>
-    <p>Thank you for choosing Cloud Bazar. We look forward to serving you!</p>
-    <div class="signature">
-      <p>Best regards,<br>Anton<br>Cloud Bazar</p>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4;">
+  <div class="container" style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff; border-radius: 6px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+    <h2 style="color: #333; text-align: center; margin-top: 0;">Verify Your Email Address</h2>
+    <p style="margin-bottom: 10px; font-size: 16px;">Dear {{ first_name }},</p>
+    <p style="margin-bottom: 10px; font-size: 16px;">Thank you for creating an account with Cloud Bazar. To complete your registration and ensure the security of your account, we kindly ask you to verify your email address.</p>
+    <p style="margin-bottom: 10px; font-size: 16px;">Follow the instructions below to verify your email:</p>
+    <p style="margin-bottom: 10px; font-size: 16px;">Enter the verification code provided: <strong>{{ email_confirmation_number }}</strong></p>
+    <p style="margin-bottom: 10px; font-size: 16px;">If you have any trouble verifying your email or if you did not create an account, please contact our support team at <a href="mailto:cloudbazarsupport@gmail.com" style="color: #337ab7; text-decoration: none;">cloudbazarsupport@gmail.com</a>.</p>
+    <p style="margin-bottom: 10px; font-size: 16px;">Thank you for choosing Cloud Bazar. We look forward to serving you!</p>
+    <div class="signature" style="margin-top: 20px;">
+      <p style="margin-bottom: 5px; font-size: 14px; text-align: right;">Best regards,<br>Anton<br>Cloud Bazar</p>
     </div>
   </div>
 </body>
 </html>
+

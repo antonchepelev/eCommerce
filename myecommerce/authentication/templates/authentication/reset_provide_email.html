@@ -13,7 +13,7 @@
   <div class="container">
     <h3>Please provide us your email so we can email you your password reset link</h3>
 
-    <form action="{% url 'reset-provide-email' %}" method="post">
+    <form action="{% url 'password-reset' %}" method="post">
       {% csrf_token %}
       <input type="email" id="email" name="email" placeholder = "Email" required>
 
