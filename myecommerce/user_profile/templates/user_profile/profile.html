@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+{%load static%}
+<style>
+    /* Reset default margin and padding for all elements */
+body, h1, h2, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Basic styles for the page */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  
+}
+
+.container {
+  display: flex;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+.container .sidebar {
+  flex: 0 0 25%;
+  background-color: #f2f2f2;
+  padding: 1rem;
+}
+
+.container .profile-content {
+  flex: 1;
+  padding: 1rem;
+}
+
+.user-profile {
+  text-align: center;
+}
+
+.user-profile img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Styling for the sidebar navigation links */
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar a {
+  color: #333;
+  text-decoration: none;
+  display: block;
+  padding: 0.5rem;
+}
+
+.sidebar a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+label {
+  font-weight: bold;
+}
+
+.add-listing {
+  position: absolute;
+  right: 0px;
+  bottom: 180px;
+}
+.your-listings{
+  font-family: 'Courier New', Courier, monospace;
+}
+</style>
+<body>
+  <header>
+    <h1><img src="{% static 'images/cloudbazar.png' %}" width = "500" height="100" ></h1>
+    <!-- Add any other header elements, like navigation links or a search bar -->
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <!-- Sidebar content, e.g., navigation links -->
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="#">Orders</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </aside>
+
+    <main class="profile-content">
+      <!-- User profile content -->
+      <div class="user-profile">
+        <form action="{% url 'upload-profile-picture' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if profile_picture.image%}
+         <img src="{{profile_picture.image.url}}" height="200" alt="User Profile Picture"> 
+            {% else %}
+            <img src="{%static 'images/troll.png'%}" height="200" alt="User Profile Picture"> 
+            {% endif %}
+        <br>
+        <input type="file" name="{{ form.image.name }}">
+        <br><br>
+        
+    
+        <label for="first_name">First Name</label>
+        <input name = "first_name" value="{{profile_picture.user.first_name}}">
+        <br><br>
+        <label for="last_name">Last Name</label>
+        <input name = "last_name" value="{{profile_picture.user.last_name}}">
+        <br><br>
+
+        <p class = "email" >Email: {{profile_picture.user.email}}</p>
+        <br><br>
+        <label for="username">Username</label>
+        <input name = "username" value="{{profile_picture.user.username}}">
+        <br><br>
+        <!-- Add more user profile information as needed -->
+        <button type = "submit">Save Changes</button>
+      </div>
+    </form>
+    </main>
+  </div>
+  <div style="background-color: #333;">
+    <br><br>
+  </div>
+  <div style = "background-color: #fff;">
+<div><h2 class = "your-listings" >Your Listings</h2><button class = "add-listing" ><a href="{% url 'add-listing' %}">Add Listing +</a></button>
+  </div>
+  
+
+  </div>
+  <footer>
+    <!-- Footer content, e.g., copyright information -->
+    <p>&copy; 2023 Cloud Bazar. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "home.apps.HomeConfig",
-    "authentication.apps.AuthenticationConfig"
+    "authentication.apps.AuthenticationConfig",
+    "user_profile.apps.UserProfileConfig",
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +139,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+MEDIA_URL = '/media/'
+
+# The absolute path to the directory where collectstatic will collect static files for deployment
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 import dotenv
 

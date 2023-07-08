@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/37a1c72a36.js" crossorigin="anonymous"></script>
+    <title>Navigation Bar Template</title>
+</head>
+
+<style>
+    /* CSS Reset */
+    html, body, header, nav, ul, li, a {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        font-family: inherit;
+        vertical-align: baseline;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .left ul,
+    .right ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .left ul li,
+    .right ul li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .left ul li a,
+    .right ul li a {
+        text-decoration: none;
+        color: #fff;
+        position: relative;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+    }
+
+    .left ul li a::after,
+    .right ul li a::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .left ul li a:hover::after,
+    .right ul li a:hover::after {
+        opacity: 1;
+    }
+
+    .search-form input[type="text"] {
+        padding: 6px;
+        width: 200px;
+        border: none;
+        border-radius: 4px;
+    }
+
+    .search-form button {
+        padding: 6px 12px;
+    }
+</style>
+    <header>
+        <nav>
+            <div class="left">
+                <ul>
+                    <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <h1><img src="{% static 'images/cloudbazar.png' %}" width="500" height="100"></h1>
+            </div>
+            <div class="search-form">
+                
+                <input type="text" name="search" placeholder="Search">
+                <button type="submit">Go</button>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="#" class="nav-link">My Account</a></li>
+                    <li><a href="#" class="nav-link"><i class="fa-sharp fa-solid fa-cart-shopping fa-lg"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+</html>
+
+

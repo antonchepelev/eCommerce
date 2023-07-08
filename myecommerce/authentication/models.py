@@ -13,7 +13,7 @@ class Accounts(models.Model):
     first_name =  models.CharField(max_length=15)
     last_name =  models.CharField(max_length=15)
     email = models.CharField(max_length=30,null=True)
-    username = models.CharField(max_length=10)
+    username = models.CharField(max_length=15)
     password = models.CharField(max_length=128)
    
 class UserEmailConfirmationNumber(models.Model):
