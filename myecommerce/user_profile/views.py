@@ -3,6 +3,8 @@ from .models import ProfilePicture, User
 from .forms import ProfilePictureForm, AddListingForm
 from django.views import View
 from home.models import Product
+
+
 # Create your views here.
 
 def Profile(request):
@@ -10,7 +12,10 @@ def Profile(request):
     profile_picture, _ = ProfilePicture.objects.get_or_create(user=user)
 
     form = ProfilePictureForm(request.GET,request.FILES,instance=profile_picture)
-    return render(request,"user_profile/profile.html",{"profile_picture":profile_picture,"form":form})
+
+    user_listings = Product.objects.filter(user=user)
+
+    return render(request,"user_profile/profile.html",{"profile_picture":profile_picture,"form":form,"user_listings":user_listings})
 
 def UpdateProfile(request):
     user = request.user

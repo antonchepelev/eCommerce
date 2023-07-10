@@ -1,100 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {%load static%}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Profile</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/user_profile/profile.css' %}">
 </head>
-{%load static%}
-<style>
-    /* Reset default margin and padding for all elements */
-body, h1, h2, p, ul, li {
-  margin: 0;
-  padding: 0;
-}
 
-/* Basic styles for the page */
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  
-}
-
-.container {
-  display: flex;
-}
-
-header {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-}
-
-.container .sidebar {
-  flex: 0 0 25%;
-  background-color: #f2f2f2;
-  padding: 1rem;
-}
-
-.container .profile-content {
-  flex: 1;
-  padding: 1rem;
-}
-
-.user-profile {
-  text-align: center;
-}
-
-.user-profile img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
-
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-}
-
-/* Styling for the sidebar navigation links */
-.sidebar ul {
-  list-style: none;
-}
-
-.sidebar li {
-  margin-bottom: 0.5rem;
-}
-
-.sidebar a {
-  color: #333;
-  text-decoration: none;
-  display: block;
-  padding: 0.5rem;
-}
-
-.sidebar a:hover {
-  background-color: #333;
-  color: #fff;
-}
-
-label {
-  font-weight: bold;
-}
-
-.add-listing {
-  position: absolute;
-  right: 0px;
-  bottom: 180px;
-}
-.your-listings{
-  font-family: 'Courier New', Courier, monospace;
-}
-</style>
 <body>
   <header>
     <h1><img src="{% static 'images/cloudbazar.png' %}" width = "500" height="100" ></h1>
@@ -149,11 +62,26 @@ label {
     <br><br>
   </div>
   <div style = "background-color: #fff;">
+
 <div><h2 class = "your-listings" >Your Listings</h2><button class = "add-listing" ><a href="{% url 'add-listing' %}">Add Listing +</a></button>
   </div>
-  
 
+   <div class = "container">
+    
+  {% for product in user_listings %}
+    <div class = "inner">
+    <a name ="product" href="https://youtube.com"><img src="{{product.image.url}}" alt="{{ product.name }}"width="200" height="150" ></a>
+    {% if product.name|length >= 15 %}
+    <label class = "product-label">{{ product.name|slice:":14" }}... $ {{product.price}}</label>
+    {% else %}
+    <label class = "product-label">{{product.name}} $ {{product.price}}</label>
+    {% endif %}
+    </div>
+    {% endfor %}
+  
   </div>
+ 
+
   <footer>
     <!-- Footer content, e.g., copyright information -->
     <p>&copy; 2023 Cloud Bazar. All rights reserved.</p>
