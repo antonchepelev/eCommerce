@@ -1,0 +1,113 @@
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Basic styles for the page */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    
+  }
+  
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .container .sidebar {
+    flex: 0 0 25%;
+    background-color: #f2f2f2;
+    padding: 1rem;
+  }
+  
+  .container .profile-content {
+    flex: 1;
+    padding: 1rem;
+  }
+  
+  .user-profile {
+    text-align: center;
+  }
+  
+  .user-profile img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  /* Styling for the sidebar navigation links */
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .sidebar a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
+  }
+  
+  .sidebar a:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  .add-listing {
+    position: absolute;
+    right: 0px;
+    bottom: 90px;
+  }
+  .your-listings{
+    font-family: 'Courier New', Courier, monospace;
+  }
+  e-wheel {
+        overflow-x: auto;
+        /* Add a fixed width to limit the width of the scrollable wheel */
+        width: 1000px; 
+        height: 200px;
+      }
+      
+    .scrollable-content {
+    white-space: nowrap;
+    /* Add height property to the content if needed */
+    }
+    .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Optional: Center items horizontally */
+    padding: 10px;
+    border: 1px solid #333;
+    
+    }
+    .product-label {
+    border: 1px solid #333;
+    padding: 10px;
+    }
+   
+    
+    .container {
+    display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      
+  }

@@ -19,6 +19,7 @@
       <!-- Sidebar content, e.g., navigation links -->
       <ul>
         <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'cart' %}">Cart</a></li>
         <li><a href="#">Orders</a></li>
         <li><a href="#">Settings</a></li>
         <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -70,7 +71,7 @@
     
   {% for product in user_listings %}
     <div class = "inner">
-    <a name ="product" href="https://youtube.com"><img src="{{product.image.url}}" alt="{{ product.name }}"width="200" height="150" ></a>
+    <a name ="product" href="{% url 'product-view' product.id %}"><img src="{{product.image.url}}" alt="{{ product.name }}"width="200" height="150" ></a>
     {% if product.name|length >= 15 %}
     <label class = "product-label">{{ product.name|slice:":14" }}... $ {{product.price}}</label>
     {% else %}

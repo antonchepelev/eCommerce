@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E-commerce Site</title>
   <script src="https://kit.fontawesome.com/37a1c72a36.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home/home.css' %}">
 </head>
-<link rel="stylesheet" type="text/css" href="{% static 'css/home/home.css' %}">
+
 <body>
   <!-- Header section -->
   <header>
@@ -74,7 +75,9 @@
     text-align: center;
     right: 180px;
   }
-      
+    .cart-link {
+      color: #fff;
+    }
     
     </style>
     <section id="latest-products">
@@ -85,11 +88,11 @@
           
       {% for product in products %}
       <div class = "image-container">
-      <a name ="product" href="https://youtube.com"><img src="{{product.image.url}}" alt="{{ product.name }}"width="200" height="150" ></a>
+      <a name ="product" href="{% url 'product-view' product.id %}"><img src="{{product.image.url}}" alt="{{ product.name }}"width="200" height="150" ></a>
       {% if product.name|length >= 15 %}
-      <label class = "label">{{ product.name|slice:":14" }}... $ {{product.price}}</label>
+      <label class = "label">{{ product.name|slice:":14" }}... $ {{product.price}} <a class = "cart-link"href="{% url 'add_cart' product.id %}"><i class="fa-solid fa-cart-plus"></i></a></label>
       {% else %}
-      <label class = "label">{{product.name}} $ {{product.price}}</label>
+      <label class = "label">{{product.name}} $ {{product.price}} <a class = "cart-link"href="{% url 'add_cart' product.id %}"><i class="fa-solid fa-cart-plus"></i></a></label>
       {% endif %}
 
     

@@ -1,34 +1,152 @@
-
-
-
-<h1 style="font-family: 'Courier New', Courier, monospace;font-weight: bolder;color: blue;">YOUR CART</h1>
+<head>
+  {%  load static %}
+</head>
+{% include 'home/navbar.html' %}
 <style>
-    .spinbox {
-      display: inline-flex;
-      align-items: center;
-    }
-    .spinbox input[type="number"] {
-      width: 60px;
-      text-align: center;
-    }
+  .spinbox {
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+  }
 
-  </style>
-  {% for form, item in forms %}
-  <form method="POST" action="{% url 'cart' %}">
+  .border {
+    position: relative;
+    border: 1px solid black;
+    padding: 10px;
+    width: 500px;
+    left: 50px;
+  }
+  h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+  }
+  .container {
+    align-items: center;
+    position: relative;
+      
+  }
+  .container .sidebar {
+    width: 400px;
+    height: 800px;
+    border: 1px solid black;
+    position:absolute;
+    right: 50px;
+    top: 0;
+    
+    
+  }
+  .similar-product-section {
+    position:absolute;
+    right: 45px;
+    top: 60px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-weight: bolder;
+  }
+  .description-container {
+    position: relative;
+
+  }
+
+
+  .sidebar .image-container {
+    width: 400px;   /* Desired container width */
+    height: 200px;  /* Desired container height */
+    overflow: hidden;
+    
+
+  }
+  .sidebar .image-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    padding: 5px;
+    border: 1px solid black;
+    
+  }
+
+  
+
+
+/* CSS */
+.button-1 {
+  position: absolute;
+  
+    left: 300px;
+    top: 0;
+  background-color: #ceb029;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 34px;
+  font-weight: 500;
+  height: 70px;
+  width: 300px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+}
+
+.button-1:hover,
+.button-1:focus {
+  background-color: #F082AC;
+}
+
+
+</style>
+<div class = "description-container">
+<h1>Shopping Cart</h1>
+<h2>Your Cart Total is ${{cart_cost_total}}</h2>
+<button class="button-1" role="button" href ="#">Checkout</button>
+<h2 class = "similar-product-section">Products Similar to the ones in your cart</h2>
+
+
+<div class = "container">
+  {% for item, cart_item in zipped_items %}
+  <form method="POST" action="{% url 'update-item-quantity' id=item.id %}">
     
 
     {% csrf_token %}
+    <div class = "border">
+      
 <p>{{item.name}}</p>
 <img src="{{item.image.url}}" height="200">
 <div class="spinbox">
     
     {{ form.quantity.label_tag }}
-    <input type="number" name="quantity" placeholder="{{ item }}" min="1">
-
-    
-    
+    <button type = "submit" name = "decrease">-</button>
+    <h2>{{cart_item.quantity}}</h2>
+    <button type = "submit" name = "increase">+</button>
+  </div>
   </div>
 
-<button type="submit">Save Changes</button>
 </form>
 {% endfor %}
+
+
+
+<div class = "sidebar">
+  {% for product in similar_products %}
+  <div class = "image-container">
+    <label for="similar-product"></label>
+  <img name = "similar-product" src = {{product.image.url}} >
+  
+</div>
+  {% endfor %}
+</div>
+
+</div>
+
+</div>
+
