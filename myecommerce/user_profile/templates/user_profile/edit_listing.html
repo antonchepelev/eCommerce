@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Add Product</title>
+  <title>Edit Listing</title>
 {% load static %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,18 +17,30 @@
     {% csrf_token %}
     
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
+    <input type="text" id="name" name="name" value = "{{product.name}}" required>
 
     <label for="description">Description:</label>
-    <textarea id="description" name="description" required></textarea>
+    <textarea id="description" name="description" required>{{product.description}}</textarea>
 
     <label for="price">Price:</label>
-    <input type="number" id="price" name="price" required>
+    <input type="number" id="price" name="price" value = "{{product.price}}" required>
 
     <label for="image">Image:</label>
     
-    <input type="file" id="image" name="image" accept="image/*" required>
-    
+    <input type="file" id="image" name="image" accept="image/*"  >
+    <style>
+        div {
+            width: 200;
+            height: 200;
+        }
+        div img {
+        
+        object-fit: contain;
+        }
+    </style>
+    <div>
+    <img src = "{{product.image.url}}" width="200" height="200">
+    </div>
     <label for="category">Category:</label>
     <select type="text" name = "category">
       {% for category in categories %}
@@ -37,11 +49,13 @@
       </select>
 
     <label for="tags">Tags:</label>
-    <input type="text" id="tag-input" name="tags" required>
+    <input type="text" id="tag-input" name="tags" value = "{{tags}}" required>
+    
 
-    <button type="submit">Add Product</button>
+    <button type="submit">Save Changes</button>
   </form>
     </div>
+    
 </body>
 
 

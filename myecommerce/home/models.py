@@ -3,6 +3,23 @@ from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 
 
+CATEGORIES = (
+    ('other', 'Other'),
+        ('electronics', 'Electronics'),
+        ('clothing', 'Clothing'),
+        ('home', 'Home'),
+        ('beauty', 'Beauty'),
+        ('books', 'Books'),
+        ('toys', 'Toys'),
+        ('sports', 'Sports'),
+        ('jewelry', 'Jewelry'),
+        ('automotive', 'Automotive'),
+        ('health', 'Health'),
+        ('food', 'Food'),
+        ('music', 'Music'),
+        ('movies', 'Movies'),
+        # Add more categories as needed
+    )
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
@@ -11,6 +28,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='product_images/')
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE, null=True,blank=True)
+    category = models.CharField(max_length=50,null = True, blank=True, choices = CATEGORIES)
     tags = TaggableManager()
 
     def __str__(self):

@@ -64,14 +64,16 @@
   </div>
   <div style = "background-color: #fff;">
 
-<div><h2 class = "your-listings" >Your Listings</h2><button class = "add-listing" ><a href="{% url 'add-listing' %}">Add Listing +</a></button>
-  </div>
+<div class="your-listings-container" ><h2 class = "your-listings" >Your Listings</h2><button class = "add-listing" ><a href="{% url 'add-listing' %}">Add Listing +</a></button>
+  
 
    <div class = "container">
     
   {% for product in user_listings %}
     <div class = "inner">
     <a name ="product" href="{% url 'product-view' product.id %}"><img src="{{product.image.url}}" alt="{{ product.name }}"width="200" height="150" ></a>
+    <a class = "edit-listing" href = "{% url 'edit-listing' product.id%} ">Edit</a>
+    <a class = "remove-listing" href ="{% url 'remove-listing' product.id%} " >Delete</a>
     {% if product.name|length >= 15 %}
     <label class = "product-label">{{ product.name|slice:":14" }}... $ {{product.price}}</label>
     {% else %}
@@ -81,7 +83,7 @@
     {% endfor %}
   
   </div>
- 
+</div>
 
   <footer>
     <!-- Footer content, e.g., copyright information -->
