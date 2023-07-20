@@ -4,7 +4,7 @@
     {%load static%}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-commerce Site</title>
+  <title>Cloud Bazar</title>
   <script src="https://kit.fontawesome.com/37a1c72a36.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/home/home.css' %}">
 </head>
@@ -18,10 +18,19 @@
         <div class="banner-container">
           <div class="banner">10% OFF SITEWIDE USE CODE "CLOUDLAUNCH" AT CHECKOUT</div>
         </div>
+
     <nav>
       <ul>
         <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="#">Products</a></li>
+        <li class="dropdown-products">
+          <span class = "products-label">Products</span>
+          <div class="dropdown-content">
+            <a href="#">All Products</a>
+            {% for category in categories %}
+            <a href="#">{{category.1}}</a>
+            {% endfor %}
+          </div>
+        </li>
         <li><a href="{% url 'cart' %}">Cart</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
@@ -56,30 +65,6 @@
       <a href="https://youtube.com"><img src="{% static 'images/ps5_picture.jpg' %}" height="150" ></a>
     </section>
 
-    <style>.scrollable-wheel {
-      overflow-x: auto;
-      /* Add a fixed width to limit the width of the scrollable wheel */
-      width: 1000px; 
-      height: 300px;
-    }
-    
-    .scrollable-content {
-      white-space: nowrap;
-      /* Add height property to the content if needed */
-    }
-      .label {
-        position: relative;
-    top: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    text-align: center;
-    right: 180px;
-  }
-    .cart-link {
-      color: #fff;
-    }
-    
-    </style>
     <section id="latest-products">
       <h2>Latest Products</h2>
       
@@ -90,9 +75,9 @@
       <div class = "image-container">
       <a name ="product" href="{% url 'product-view' product.id %}"><img src="{{product.image.url}}" alt="{{ product.name }}"width="200" height="150" ></a>
       {% if product.name|length >= 15 %}
-      <label class = "label">{{ product.name|slice:":14" }}... $ {{product.price}} <a class = "cart-link"href="{% url 'add_cart' product.id %}"><i class="fa-solid fa-cart-plus"></i></a></label>
+      <label class = "label-product">{{ product.name|slice:":14" }}... $ {{product.price}} <a class = "cart-link"href="{% url 'add_cart' product.id %}"><i class="fa-solid fa-cart-plus"></i></a></label>
       {% else %}
-      <label class = "label">{{product.name}} $ {{product.price}} <a class = "cart-link"href="{% url 'add_cart' product.id %}"><i class="fa-solid fa-cart-plus"></i></a></label>
+      <label class = "label-product">{{product.name}} $ {{product.price}} <a class = "cart-link"href="{% url 'add_cart' product.id %}"><i class="fa-solid fa-cart-plus"></i></a></label>
       {% endif %}
 
     

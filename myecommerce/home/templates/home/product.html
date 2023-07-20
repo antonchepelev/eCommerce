@@ -4,46 +4,12 @@
     {%load static%}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-commerce Site</title>
+  <title>Cloud Bazar</title>
   <script src="https://kit.fontawesome.com/37a1c72a36.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/home/home.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home/product.css' %}">
 </head>
 
-<style>
-    .image-container {
-      width: 200px; /* Desired width */
-      height: 150px; /* Desired height */
-      border: 1px solid #000; /* Optional border for visual clarity */
-      padding: 10px; /* Adjust the padding value to add whitespace */
-      box-sizing: border-box; /* Include padding in the specified width and height */
-    }
-  
-    .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* Maintain aspect ratio and fit within the container */
-    }
-    .similar-product-image-container {
-        display: flex;
-        flex-wrap: nowrap; /* Prevent wrapping to a new line */
-        overflow-x: auto; /* Enable horizontal scrolling */
-        margin-bottom: 30px;
-        overflow-x: auto;
-      /* Add a fixed width to limit the width of the scrollable wheel */
-      width: 1300px; 
-      height: 400px;
-    }
 
-    .similar-product-image-container img {
-        flex: 0 0 auto; /* Prevent image stretching and maintain original size */
-        margin-right: 10px; /* Adjust the margin value between images */
-        width: 50%;
-      height: 50%;
-      object-fit: contain; /* Maintain aspect ratio and fit within the container */
-    }
-
-  </style>
-  
   {% include 'home/navbar.html' %}
 
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Product, Cart, CartItem
+from .models import Product, Cart, CartItem, CATEGORIES
 from .forms import ItemQuantityForm
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
@@ -13,7 +13,8 @@ import random
 
 def home(request):
     products = Product.objects.all()
-    return render(request,"home/home.html",{"products":products})
+    context = {"products":products,"categories":CATEGORIES}
+    return render(request,"home/home.html",context)
 
 def navbar(request):
 

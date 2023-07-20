@@ -1,108 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   {%  load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home/cart.css' %}">
 </head>
 {% include 'home/navbar.html' %}
 <style>
-  .spinbox {
-    display: inline-flex;
-    align-items: center;
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    border: 1px solid black;
-    padding-left: 10px;
-    padding-right: 10px;
-    
-  }
-
-  .border {
-    position: relative;
-    border: 1px solid black;
-    padding: 10px;
-    width: 500px;
-    left: 50px;
-  }
-  h1 {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bolder;
-  }
-  .container {
-    align-items: center;
-    position: relative;
-      
-  }
-  .container .sidebar {
-    width: 400px;
-    height: 800px;
-    border: 1px solid black;
-    position:absolute;
-    right: 50px;
-    top: 0;
-    
-    
-  }
-  .similar-product-section {
-    position:absolute;
-    right: 45px;
-    top: 60px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 18px;
-    font-weight: bolder;
-  }
-  .description-container {
-    position: relative;
-
-  }
-
-
-  .sidebar .image-container {
-    width: 400px;   /* Desired container width */
-    height: 200px;  /* Desired container height */
-    overflow: hidden;
-    
-
-  }
-  .sidebar .image-container img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-    padding: 5px;
-    border: 1px solid black;
-    
-  }
-
   
-
-
-/* CSS */
-.button-1 {
-  position: absolute;
-  
-    left: 300px;
-    top: 0;
-  background-color: #ceb029;
-  border-radius: 8px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 34px;
-  font-weight: 500;
-  height: 70px;
-  width: 300px;
-  line-height: 20px;
-  list-style: none;
-  margin: 0;
-  outline: none;
-}
-
-.button-1:hover,
-.button-1:focus {
-  background-color: #F082AC;
-}
-
 
 </style>
 <div class = "description-container">
@@ -134,8 +41,6 @@
 </form>
 {% endfor %}
 
-
-
 <div class = "sidebar">
   {% for product in similar_products %}
   <div class = "image-container">
@@ -150,3 +55,4 @@
 
 </div>
 
+</html>
