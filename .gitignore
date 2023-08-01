@@ -1,8 +1,9 @@
 env/
 myecommerce/myecommerce/.env
+myecommerce/myecommerce/settings.py
 myecommerce/db.sqlite3
 *.pyc
 __pycache__/
-
+myecommerce/media
 myecommerce/myecommerce/__pycache__/settings.cpython-310.pyc
 
