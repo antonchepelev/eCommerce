@@ -1,19 +1,43 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Product, Cart, CartItem, CATEGORIES
-from .forms import ItemQuantityForm
+from .models import Product, Cart, CartItem, CATEGORIES, User
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 import random
 
+from user_profile.models import ProfilePicture
 
-
-# Create your views here.
-
+# counts .
+@staticmethod
+def product_count(users:list) -> list:
+    user_product_count = {}
+    for user in users:
+        user_products = Product.objects.filter(user=user)
+        total = user_products.count()
+        username = user.username
+        user_product_count[username] = total
+    return user_product_count
+    
 def home(request):
     products = Product.objects.all()
-    context = {"products":products,"categories":CATEGORIES}
+    users = User.objects.all()
+    counted_products = product_count(users)
+    top_3 = sorted(counted_products.items(), key=lambda x: x[1],reverse=True)
+    top_3_items = top_3[:3]
+    top_3_dict = dict(top_3_items)
+    pictures = []
+    profile_pictures = ProfilePicture.objects.all()
+    for user in top_3_dict:
+        for picture in profile_pictures:
+            if user == picture.user.username:
+                pictures.append(picture.image)
+            else:
+                continue
+    itterator = zip(top_3_dict,pictures)
+
+    
+    context = {"products":products,"categories":CATEGORIES,"users":users,"profile":itterator}
     return render(request,"home/home.html",context)
 
 def navbar(request):
@@ -35,10 +59,6 @@ class CartView(View):
             cart_item = CartItem.objects.get(cart=self.cart,item =item)
    
             self.cart_items.append(cart_item)
-
-        
-       
-        
 
         return super().dispatch(request, *args, **kwargs)
     
@@ -68,8 +88,9 @@ class CartView(View):
         except ValueError:
 
             similar_products = random.sample(list(similar_products),len(similar_products))
-     
-        return render(request,"home/cart.html",{"zipped_items":self.zipped_items,"cart_cost_total":cart_cost_total,"similar_products":similar_products})
+
+        context = {"zipped_items":self.zipped_items,"cart_cost_total":cart_cost_total,"similar_products":similar_products}
+        return render(request,"home/cart.html",context)
     
 
         

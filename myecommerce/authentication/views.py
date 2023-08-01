@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 import random
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
+
 # Create your views here.
 
 
@@ -30,6 +31,7 @@ class Login(View):
                 user_verification = User.objects.get(username=username)
 
                 # if user is_active = False they will be redirected to email verification page to confirm their email
+                #the sessions are used to send out and use the info for the email/ verification
                 if user_verification.is_active == False:
                     email = user_verification.email
                     first_name = user_verification.first_name
@@ -115,9 +117,14 @@ class EmailVerification(View):
         # works like a delete button for the displayed message
         if "delete-resend-msg" in request.GET:
             resend_code = False
-            return render(request, "authentication/email_verification.html", {"form": form, "resend_code": resend_code})
 
-        return render(request, "authentication/email_verification.html", {"form": form, "resend_code": resend_code})
+            context = {"form": form, "resend_code": resend_code}
+
+            return render(request, "authentication/email_verification.html", context)
+
+        context =  {"form": form, "resend_code": resend_code}
+        
+        return render(request, "authentication/email_verification.html",context)
 
     def post(self, request):
 

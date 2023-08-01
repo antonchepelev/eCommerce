@@ -1,9 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
+import arrow
+
 # Create your models here.
+
+#extended fields for the built in User model
+
+
+
 class UserManager:
+    
     @staticmethod
     def create_user(first_name,last_name,email,username, password):
+        
         user = User(email = email,username=username,first_name = first_name,last_name = last_name,is_active = False)
         user.set_password(password)
         user.save()

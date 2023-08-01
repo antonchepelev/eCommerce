@@ -56,14 +56,7 @@ body {
     
     display: inline-block;
   }
-  .dropdown-products {
-    position: relative;
-    
-    bottom: 40px;
-    left: 200px;
-    
-    display: inline-block;
-  }
+
 
   .dropdown-content {
     display: none;

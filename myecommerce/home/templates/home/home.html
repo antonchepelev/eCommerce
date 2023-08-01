@@ -27,7 +27,7 @@
           <div class="dropdown-content">
             <a href="#">All Products</a>
             {% for category in categories %}
-            <a href="#">{{category.1}}</a>
+            <a href="{% url 'specific-category' category.0 %}">{{category.1}}</a>
             {% endfor %}
           </div>
         </li>
@@ -87,6 +87,23 @@
     </div>
     </section>
   </main>
+
+  <style>
+    .top-sellers {
+      position: absolute;
+      top: 250px;
+      margin-left: 60px;
+    }
+  </style>
+  <section class = "top-sellers">
+    <h2>Top Sellers</h2>
+    {%for username, picture in profile%}
+    <p>{{username}}</p>
+    
+    <img src = "{{picture.url}}" width =70>
+    
+    {% endfor %}
+  </section>
 
   <!-- Footer section -->
   <footer>

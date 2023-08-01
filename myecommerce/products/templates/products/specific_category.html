@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {%  load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{product.category.1}}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/home/cart.css' %}">
+  </head>
+  {% include "home/navbar.html" %}
+  <style>
+    .image-container {
+        width: 300px;
+        height: 300px;
+        overflow: hidden;
+    }
+    .image-container img {
+        height: 100%;
+        width: 100%; 
+        object-fit: contain ;
+    }
+  </style>
+  <body>
+    <h1>{{category}}</h1>
+  {%for product in products%}
+
+  <a href="{% url 'product-view' product.id %}" >{{product}}
+  <div class = "image-container">
+  <img src="{{product.image.url}}" >
+    </div>
+</a>
+{% endfor %}
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </html>

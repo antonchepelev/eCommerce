@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     "home.apps.HomeConfig",
     "authentication.apps.AuthenticationConfig",
     "user_profile.apps.UserProfileConfig",
+    "products.apps.ProductsConfig",
     'taggit',
+  
 ]
 
 MIDDLEWARE = [
@@ -187,3 +189,9 @@ LOGGING = {
 
 
 LOGIN_URL = '/sign-in'  # Replace with the actual URL of your login page
+
+
+
+
+
+

@@ -11,25 +11,112 @@
 
 
   {% include 'home/navbar.html' %}
+   
 
 
+<style>
+  .image-container {
+    width: 400px; /* Desired width */
+    height: 450px; /* Desired height */
+    border: 1px solid #000; /* Optional border for visual clarity */
+    padding: 10px; /* Adjust the padding value to add whitespace */
+    box-sizing: border-box; /* Include padding in the specified width and height */
+  }
 
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Maintain aspect ratio and fit within the container */
+  }
+  .similar-product-image-container {
+      display: flex;
+      flex-wrap: nowrap; /* Prevent wrapping to a new line */
+      overflow-x: auto; /* Enable horizontal scrolling */
+      margin-bottom: 30px;
+      overflow-x: auto;
+    /* Add a fixed width to limit the width of the scrollable wheel */
+    width: 1850px; 
+    height: 350px;
+    border: 1px solid #333;
+  }
 
+  .similar-product-image-container img {
+      flex: 0 0 auto; /* Prevent image stretching and maintain original size */
+      margin-right: 10px; /* Adjust the margin value between images */
+      width: 50%;
+    height: 50%;
+    object-fit: contain; /* Maintain aspect ratio and fit within the container */
+  }
+
+.similar-product-inner-container {
+  width: 600px;
+  height: 300px;
+  border: 1px solid black;
+}
+.similar-product-inner-container img{
+  width: 100%;
+  top: 100%;
+  object-fit: contain;
+}
+.border {
+  background-color: #333;
+  height: 50px;
+}
+.similar-products {
+  margin-left: 25px
+}
+.main-product {
+  padding: 25px;
+  position: relative;
+}
+.main-product h1 {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 40px;
+}
+
+.main-product p {
+  position: absolute;
+  left: 500px;
   
-<h1>{{product.name}}</h1>
+}
+
+.main-product .cart-link {
+  position: absolute;
+  color:#333;
+  left: 450px;
+  bottom: 20px;
+  font-size: 50px;
+}
+
+
+</style>
+
+<div class = "main-product" >
+<h1 >{{product.name}} | ${{product.price}} |</h1>
 <p>{{product.description}}</p>
-<p>$ {{product.price}}</p>
+
 <div class="image-container">
 <img src ="{{product.image.url}}" class = "resized-image"  >
 <a class = "cart-link"href="{% url 'add_cart' product.id %}"><i class="fa-solid fa-cart-plus"></i></a>
+</div>
+</div>
 
-<br><br><br><br><br><br>
+
+
+<div class = "border">
+<br>
+</div>
+
+<div class = "similar-products">
 <h1>Similar Products</h1>
 <div class = "similar-product-image-container">
 {% for sp in similar_products %}
+<div class = "similar-product-inner-container">
 <p>{{sp}}</p>
-<img src="{{sp.image.url}}" >
-
+<a href = "{% url 'product-view' sp.id %}"><img src="{{sp.image.url}}" ></a>
+<p>${{sp.price}}</p>
+<a class ="add-cart" href="{% url 'add_cart' sp.id %}"><i class="fa-solid fa-cart-plus"></i></a>
+</div>
 {% endfor %}
 </div>
 </div>

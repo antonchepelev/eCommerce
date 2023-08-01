@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import ProfilePicture, User
 from .forms import ProfilePictureForm, AddListingForm
 from django.views import View
@@ -16,7 +17,8 @@ def Profile(request):
 
     user_listings = Product.objects.filter(user=user)
 
-    return render(request,"user_profile/profile.html",{"profile_picture":profile_picture,"form":form,"user_listings":user_listings})
+    context = {"profile_picture":profile_picture,"form":form,"user_listings":user_listings}
+    return render(request,"user_profile/profile.html",context)
 
 def UpdateProfile(request):
     user = request.user
@@ -45,7 +47,8 @@ def UpdateProfile(request):
     else:
         form = ProfilePictureForm(instance=profile_picture)
 
-    return render(request, "user_profile/profile.html", {"profile_picture": profile_picture, "form": form})
+    context = {"profile_picture": profile_picture, "form": form}
+    return render(request, "user_profile/profile.html",context )
 
 @method_decorator(login_required, name='get')
 class AddListing(View):
@@ -75,7 +78,7 @@ class AddListing(View):
 
             return redirect("profile")
         else:
-            None
+            return redirect("add-listing")
 
 @login_required
 def RemoveListing(request,id):
@@ -126,4 +129,4 @@ class EditListing(View):
 
             return redirect("profile")
         else:
-            None
+            return redirect(reverse("edit-listing",args=[id]))

@@ -3,6 +3,7 @@ from taggit.managers import TaggableManager
 from django.contrib.auth.models import User
 
 
+
 CATEGORIES = (
     ('other', 'Other'),
         ('electronics', 'Electronics'),
@@ -18,8 +19,10 @@ CATEGORIES = (
         ('food', 'Food'),
         ('music', 'Music'),
         ('movies', 'Movies'),
+        ('personal_care', 'Personal Care'),
         # Add more categories as needed
     )
+
 
 class Product(models.Model):
     name = models.CharField(max_length=200)

@@ -84,6 +84,43 @@
     .search-form button {
         padding: 6px 12px;
     }
+
+  /* CSS */
+  .dropdown {
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    top: 84px;
+    right: 70px;
+    
+    display: inline-block;
+  }
+
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 8px 0;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
 </style>
     <header>
         <nav>
@@ -101,13 +138,29 @@
                 <input type="text" name="search" placeholder="Search">
                 <button type="submit">Go</button>
             </div>
+            
             <div class="right">
+                {% if request.user.is_authenticated %}
                 <ul>
-                    <li><a href="#" class="nav-link">My Account</a></li>
-                    <li><a href="#" class="nav-link"><i class="fa-sharp fa-solid fa-cart-shopping fa-lg"></i></a></li>
+                    <li><a href="{% url 'cart' %}" class="nav-link"><i class="fa-sharp fa-solid fa-cart-shopping fa-lg"></i></a></li>
                 </ul>
             </div>
         </nav>
+        <div class="dropdown">
+      
+            <span>My Account <i class="fa-solid fa-angle-down"></i></span>
+            <div class="dropdown-content">
+              <a href="{% url 'profile' %}">Profile</a>
+              <a href="#">Orders</a>
+              <a href="{% url 'logout' %}">Logout</a>
+            </div>
+          </div>
+          {% else %}
+          <ul>
+            <li><a href="{% url 'cart' %}" class="nav-link">Sign In</a></li>
+        </ul>
+    </div>
+    {% endif %}
     </header>
 
 </html>
